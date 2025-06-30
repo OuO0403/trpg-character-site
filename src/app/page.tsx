@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 
-const rollDice = (sides: number, count: number) => {
+const rollDice = (sides: number, count: number): number => {
   let total = 0;
   for (let i = 0; i < count; i++) {
     total += Math.floor(Math.random() * sides) + 1;
@@ -14,59 +14,81 @@ const rollDice = (sides: number, count: number) => {
   return total;
 };
 
-const generateStats = () => {
-  return {
-    STR: rollDice(6, 3) * 5,
-    CON: rollDice(6, 3) * 5,
-    SIZ: (rollDice(6, 2) + 6) * 5,
-    DEX: rollDice(6, 3) * 5,
-    APP: rollDice(6, 3) * 5,
-    INT: (rollDice(6, 2) + 6) * 5,
-    POW: rollDice(6, 3) * 5,
-    EDU: (rollDice(6, 2) + 6) * 5,
-  };
+type Stats = {
+  STR: number;
+  CON: number;
+  SIZ: number;
+  DEX: number;
+  APP: number;
+  INT: number;
+  POW: number;
+  EDU: number;
+  Luck: number;
+  SAN: number;
+  MP: number;
+  HP: number;
 };
 
-// 這裡簡化示範，只列三個職業
-const professions = {
+const generateStats = (): Stats => {
+  const STR = rollDice(6, 3) * 5;
+  const CON = rollDice(6, 3) * 5;
+  const SIZ = (rollDice(6, 2) + 6) * 5;
+  const DEX = rollDice(6, 3) * 5;
+  const APP = rollDice(6, 3) * 5;
+  const INT = (rollDice(6, 2) + 6) * 5;
+  const POW = rollDice(6, 3) * 5;
+  const EDU = (rollDice(6, 2) + 6) * 5;
+  const Luck = rollDice(6, 3) * 5;
+  const SAN = POW;
+  const MP = Math.floor(POW / 5);
+  const HP = Math.floor((SIZ + CON) / 10);
+  return { STR, CON, SIZ, DEX, APP, INT, POW, EDU, Luck, SAN, MP, HP };
+};
+
+type Profession = {
+  formula: (...args: number[]) => number;
+  skills: string[];
+};
+
+const professions: Record<string, Profession> = {
   "會計師": {
-    formula: (edu: number) => edu * 4,
+    formula: (edu) => edu * 4,
     skills: ["會計", "法律", "圖書館使用", "聆聽", "說服", "識破", "個人專長", "個人專長"],
   },
   "雜技演員": {
-    formula: (edu: number, dex: number) => edu * 2 + dex * 2,
+    formula: (edu, dex) => edu * 2 + dex * 2,
     skills: ["攀爬", "閃避", "跳躍", "投擲", "識破", "游泳", "個人專長", "個人專長"],
   },
   "機構探員": {
-    formula: (edu: number, dex: number) => edu * 2 + dex * 2,
+    formula: (edu, dex) => edu * 2 + dex * 2,
     skills: ["人際技能", "戰鬥(拳腳)", "火器", "法律", "圖書館使用", "心理學", "匿蹤", "追蹤"],
   },
   "精神病醫師": {
-    formula: (edu: number) => edu * 4,
+    formula: (edu) => edu * 4,
     skills: ["法律", "聆聽", "醫藥", "外語", "精神分析", "心理學", "科學(生物學)"],
   },
   "動物訓練師": {
-    formula: (edu: number, app: number) => edu * 2 + app * 2,
+    formula: (edu, app) => edu * 2 + app * 2,
     skills: ["跳躍", "聆聽", "自然世界", "心理學", "科學(動物)", "匿蹤", "追蹤", "個人專長"],
   },
   "古物愛好者": {
-    formula: (edu: number) => edu * 4,
+    formula: (edu) => edu * 4,
     skills: ["鑑定", "技藝(任意)", "歷史", "圖書館使用", "外語", "人際技能", "識破", "個人專長"],
   },
   "古董商": {
-    formula: (edu: number) => edu * 4,
+    formula: (edu) => edu * 4,
     skills: ["會計", "鑑定", "開車", "人際技能", "人際技能", "歷史", "圖書館使用", "導航"],
   },
   "考古學家": {
-    formula: (edu: number) => edu * 4,
+    formula: (edu) => edu * 4,
     skills: ["鑑定", "考古學", "歷史", "外語", "圖書館使用", "識破", "機械維修", "導航或科學"],
   },
   "建築師": {
-    formula: (edu: number) => edu * 4,
+    formula: (edu) => edu * 4,
     skills: ["會計", "技藝(繪圖技術)", "法律", "母語", "電腦使用或圖書館使用", "說服", "心理學", "科學(數學)"],
   },
   "藝術家": {
-    formula: (edu: number, dex: number) => edu * 2 + dex * 2,
+    formula: (edu, dex) => edu * 2 + dex * 2,
     skills: ["技藝(任意)", "歷史或自然世界", "人際技能", "外語", "心理學", "識破", "個人專長", "個人專長"],
   },
 };
@@ -96,6 +118,7 @@ export default function CharacterGenerator() {
       setSkillPoints(points);
 
       // 替換個人專長的名稱為使用者輸入的值，或預設
+      //改掉！！！！！
       const list = prof.skills.map((sk) => {
         if (sk.startsWith("個人專長")) {
           return customSpecialties[sk] || sk;
