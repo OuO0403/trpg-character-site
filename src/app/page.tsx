@@ -30,9 +30,44 @@ const generateStats = () => {
 // 這裡簡化示範，只列三個職業
 const professions = {
   "會計師": {
-    eng: "Accountant",
-    formula: (edu) => edu * 4,
+    formula: (edu: number) => edu * 4,
     skills: ["會計", "法律", "圖書館使用", "聆聽", "說服", "識破", "個人專長", "個人專長"],
+  },
+  "雜技演員": {
+    formula: (edu: number, dex: number) => edu * 2 + dex * 2,
+    skills: ["攀爬", "閃避", "跳躍", "投擲", "識破", "游泳", "個人專長", "個人專長"],
+  },
+  "機構探員": {
+    formula: (edu: number, dex: number) => edu * 2 + dex * 2,
+    skills: ["人際技能", "戰鬥(拳腳)", "火器", "法律", "圖書館使用", "心理學", "匿蹤", "追蹤"],
+  },
+  "精神病醫師": {
+    formula: (edu: number) => edu * 4,
+    skills: ["法律", "聆聽", "醫藥", "外語", "精神分析", "心理學", "科學(生物學)"],
+  },
+  "動物訓練師": {
+    formula: (edu: number, app: number) => edu * 2 + app * 2,
+    skills: ["跳躍", "聆聽", "自然世界", "心理學", "科學(動物)", "匿蹤", "追蹤", "個人專長"],
+  },
+  "古物愛好者": {
+    formula: (edu: number) => edu * 4,
+    skills: ["鑑定", "技藝(任意)", "歷史", "圖書館使用", "外語", "人際技能", "識破", "個人專長"],
+  },
+  "古董商": {
+    formula: (edu: number) => edu * 4,
+    skills: ["會計", "鑑定", "開車", "人際技能", "人際技能", "歷史", "圖書館使用", "導航"],
+  },
+  "考古學家": {
+    formula: (edu: number) => edu * 4,
+    skills: ["鑑定", "考古學", "歷史", "外語", "圖書館使用", "識破", "機械維修", "導航或科學"],
+  },
+  "建築師": {
+    formula: (edu: number) => edu * 4,
+    skills: ["會計", "技藝(繪圖技術)", "法律", "母語", "電腦使用或圖書館使用", "說服", "心理學", "科學(數學)"],
+  },
+  "藝術家": {
+    formula: (edu: number, dex: number) => edu * 2 + dex * 2,
+    skills: ["技藝(任意)", "歷史或自然世界", "人際技能", "外語", "心理學", "識破", "個人專長", "個人專長"],
   },
 };
 
@@ -57,7 +92,7 @@ export default function CharacterGenerator() {
 
     const prof = professions[profession];
     if (prof) {
-      const points = prof.formula(s.EDU, s.DEX, s.STR);
+      const points = prof.formula(s.EDU, s.DEX, s.STR, s.POW, s.APP);
       setSkillPoints(points);
 
       // 替換個人專長的名稱為使用者輸入的值，或預設
