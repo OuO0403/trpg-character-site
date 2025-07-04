@@ -95,12 +95,14 @@ const professions: Record<string, Profession> = {
     formula: (edu: number, dex: number) => edu * 2 + dex * 2,
     skills: ["閃避", "戰鬥(拳腳)", "急救", "人際技能", "人際技能", "聆聽", "心理學", "匿蹤"],
   },
-
-//刺客	EDU x2 + (DEX or STR) x2	偽裝、電器維修、戰鬥、火器、鎖匠、機械維修、匿蹤、心理學
-
-//運動員	EDU x2 + (DEX or STR) x2	攀爬、跳躍、戰鬥(拳腳)、騎術、人際技能、游泳、投擲、個人專長
-
-
+  "通靈學家": {
+    formula: (edu: number) => edu * 4,
+    skills: ["人類學", "技藝(照相)", "歷史", "圖書館使用", "神祕學", "外語", "心理學", "個人專長"],
+  },
+  "反洗腦專員": {
+    formula: (edu: number) => edu * 4,
+    skills: ["人際技能", "人際技能", "開車", "戰鬥(拳腳)或火器", "歷史", "神祕學", "心理學", "匿蹤"],
+  },
 };
 
 
