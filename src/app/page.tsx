@@ -95,6 +95,66 @@ const professions: Record<string, Profession> = {
     formula: (edu: number, dex: number) => edu * 2 + dex * 2,
     skills: ["閃避", "戰鬥(拳腳)", "急救", "人際技能", "人際技能", "聆聽", "心理學", "匿蹤"],
   },
+  "刺客": {
+    formula: (edu: number, dex: number) => edu * 2 + dex * 2,
+    skills: ["偽裝", "電器維修", "戰鬥", "火器", "鎖匠", "機械維修", "匿蹤", "心理學"],
+  },
+  "運動員": {
+    formula: (edu: number, dex: number) => edu * 2 + dex * 2,
+    skills: ["攀爬", "跳躍", "戰鬥(拳腳)", "騎術", "人際技能", "游泳", "投擲", "個人專長"],
+  },
+  "作家": {
+    formula: (edu: number) => edu * 4,
+    skills: ["技藝(文學)", "歷史", "圖書館使用", "自然世界或神祕學", "外語", "母語", "心理學", "個人專長"],
+  },
+  "特技飛行員": {
+    formula: (edu: number) => edu * 4,
+    skills: ["會計", "電器維修", "聆聽", "機械維修", "導航", "駕駛(飛機)", "識破", "個人專長"],
+  },
+  "銀行搶匪": {
+    formula: (edu: number, str: number) => edu * 2 + str * 2,
+    skills: ["", "", "", "", "", "", "", ""],
+  },
+  "酒保": {
+    formula: (edu: number, app: number) => edu * 2 + app * 2,
+    skills: ["會計", "人際技能", "人際技能", "戰鬥(拳腳)", "聆聽", "心理學", "識破", "個人專長"],
+  },
+  "巨獸獵人": {
+    formula: (edu: number, str: number) => edu * 2 + str * 2,
+    skills: ["火器", "聆聽或識破", "自然世界", "導航", "外語或生存(任意)", "科學(生物學或植物學)", "匿蹤", "追蹤"],
+  },
+  "書商": {
+    formula: (edu: number) => edu * 4,
+    skills: ["會計", "鑑定", "開車", "歷史", "圖書館使用", "母語", "外語", "人際技能"],
+  },
+  "不法買賣者/惡棍": {
+    formula: (edu: number, str: number) => edu * 2 + str * 2,
+    skills: ["開車", "戰鬥", "火器", "人際技能", "人際技能", "心理學", "匿蹤", "識破"],
+  },
+  "賞金獵人": {
+    formula: (edu: number, str: number) => edu * 2 + str * 2,
+    skills: ["開車", "電子學或電器維修", "戰鬥或火器", "人際技能", "法律", "心理學", "追蹤", "匿蹤"],
+  },
+  "拳擊手/摔角手": {
+    formula: (edu: number, str: number) => edu * 2 + str * 2,
+    skills: ["閃避", "戰鬥(拳腳)", "威脅", "跳躍", "心理學", "識破", "個人專長", "個人專長"],
+  },
+  "竊賊": {
+    formula: (edu: number, dex: number) => edu * 2 + dex * 2,
+    skills: ["鑑定", "攀爬", "電器或機械維修", "聆聽", "鎖匠", "巧手", "匿蹤", "識破"],
+  },
+  "執事/男侍/女僕": {
+    formula: (edu: number) => edu * 4,
+    skills: ["會計或鑑定", "技藝(任意)", "急救", "聆聽", "外語", "心理學", "識破", "個人專長", "個人專長"],
+  },
+  "私人駕駛": {
+    formula: (edu: number, dex: number) => edu * 2 + dex * 2,
+    skills: ["開車", "人際技能", "人際技能", "聆聽", "機械維修", "導航", "識破", "個人專長"],
+  },
+  "基督教牧師": {
+    formula: (edu: number) => edu * 4,
+    skills: ["會計", "歷史", "圖書館使用", "聆聽", "外語", "人際技能", "心理學", "個人專長"],
+  },
   "通靈學家": {
     formula: (edu: number) => edu * 4,
     skills: ["人類學", "技藝(照相)", "歷史", "圖書館使用", "神祕學", "外語", "心理學", "個人專長"],
