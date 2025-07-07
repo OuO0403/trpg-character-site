@@ -163,6 +163,10 @@ const professions: Record<string, Profession> = {
     formula: (edu: number) => edu * 4,
     skills: ["人際技能", "人際技能", "開車", "戰鬥(拳腳)或火器", "歷史", "神祕學", "心理學", "匿蹤"],
   },
+  "法醫": {
+    formula: (edu: number) => edu * 4,
+    skills: ["外語(拉丁文)", "圖書館使用", "醫藥", "說服", "科學(生物學)", "科學(鑑識學)", "科學(藥學)", "識破"],
+  },
 };
 
 
