@@ -18,10 +18,10 @@ type Stats = {
   STR: number;
   CON: number;
   SIZ: number;
-  DEX: number;
-  APP: number;
   INT: number;
   POW: number;
+  DEX: number;
+  APP: number;
   EDU: number;
   Luck: number;
   SAN: number;
@@ -33,16 +33,16 @@ const generateStats = (): Stats => {
   const STR = rollDice(6, 3) * 5;
   const CON = rollDice(6, 3) * 5;
   const SIZ = (rollDice(6, 2) + 6) * 5;
-  const DEX = rollDice(6, 3) * 5;
-  const APP = rollDice(6, 3) * 5;
   const INT = (rollDice(6, 2) + 6) * 5;
   const POW = rollDice(6, 3) * 5;
+  const DEX = rollDice(6, 3) * 5;
+  const APP = rollDice(6, 3) * 5;
   const EDU = (rollDice(6, 2) + 6) * 5;
   const Luck = rollDice(6, 3) * 5;
   const SAN = POW;
   const MP = Math.floor(POW / 5);
   const HP = Math.floor((SIZ + CON) / 10);
-  return { STR, CON, SIZ, DEX, APP, INT, POW, EDU, Luck, SAN, MP, HP };
+  return { STR, CON, SIZ, INT, POW, DEX, APP, EDU, Luck, SAN, MP, HP };
 };
 
 type Profession = {
